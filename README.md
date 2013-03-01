@@ -1,4 +1,12 @@
-golang
-======
+Description
+===========
 
-This is a cookbook.  It does things related to Go.
+Requirements
+============
+
+Attributes
+==========
+
+Usage
+=====
+
