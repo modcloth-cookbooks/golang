@@ -26,7 +26,7 @@ remote_file tarball do
 end
 
 bash 'build-and-install-golang' do
-  cwd "#{Chef::Config[:file_cache_path]}"
+  cwd Chef::Config[:file_cache_path]
   code <<-EOF
     tar -zxvf #{tarball}
     mv go/* #{install_path}
