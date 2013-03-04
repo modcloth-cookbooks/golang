@@ -26,9 +26,9 @@ action :create do
     EOF
 
     not_if do
-      ::File.exists?("#{file_home}/go") &&
-        ::File.symlink?("#{file_home}/go") &&
-        ::File.mtime("#{file_home}/go") > ::File.mtime(tarball)
+      ::File.exists?("#{golang_install_bin}/go") &&
+        ::File.symlink?("#{golang_install_bin}/go") &&
+        ::File.mtime("#{golang_install_bin}/go") > ::File.mtime(tarball)
     end
   end
 
@@ -39,7 +39,7 @@ action :delete do
   manage_deps(:action => :uninstall)
 
   Dir["#{install_path}/bin"].each do |f|
-    file "#{file_home}/#{f}" do
+    file "#{golang_install_bin}/#{f}" do
       action :delete
     end
   end
@@ -82,6 +82,6 @@ def install_path
   @install_path ||= "#{node['install_prefix']}/share/go/#{version}"
 end
 
-def file_home
-  @file_home ||= "#{node['install_prefix']}/bin"
+def golang_install_bin
+  @golang_install_bin ||= "#{node['install_prefix']}/bin"
 end
